@@ -6,7 +6,7 @@
     --text: #fdfdfd;
     --button-bg: rgb(36, 36, 36);
     --button-text: #ffffff;
-    --button-icon: url('website/Lightmode.png');
+    --button-icon: url('Lightmode.png');
     --alt-text: #121212;
     --sans: 'Inter', Arial, sans-serif;
     --mono: 'Share Tech Mono', monospace;
@@ -20,7 +20,7 @@
     --text: #121212;
     --button-bg: #ffffff;
     --button-text: #121212;
-    --button-icon: url('website/Darkmode.png');
+    --button-icon: url('Darkmode.png');
     --alt-text: #ffffff;
   }
 
