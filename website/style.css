@@ -1,4 +1,4 @@
- :root {
+:root {
     --bg: #fdfdfd;
     --win-bg: #fdfdfd;
     --win_header: rgba(0, 1, 30, 0.911);
@@ -10,9 +10,9 @@
     --alt-text: #121212;
     --sans: 'Inter', Arial, sans-serif;
     --mono: 'Share Tech Mono', monospace;
- }
- 
- body.dark {
+}
+
+body.dark {
     --bg: #191919;
     --win-bg: #272727;
     --win_header: rgb(63, 65, 105);
@@ -22,56 +22,60 @@
     --button-text: #121212;
     --button-icon: url('Darkmode.png');
     --alt-text: #ffffff;
-  }
+}
 
-  html, body {
-    width: 100%; height: 100%;
+html, body {
+    width: 100%; 
+    height: 100%;
     margin: 0;
-    overflow:hidden;
+    overflow: hidden;
     background: var(--bg);
     align-items: center;
     justify-content: center;
     display: flex;
+    flex-direction: column; /* Allows content stacking if needed */
     transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
+}
 
 /* window settings */
-  #window {
-    width: 800px; height: 450px;
+#window {
+    width: 90%;          /* Fluid width for tablets/smaller screens */
+    max-width: 800px;    /* Prevents it from getting too large on desktop */
+    height: 450px;
     background-color: var(--win-bg);
     border: 2.5px solid var(--border);
     box-shadow: 5px 5px 1px var(--border);
-    border-radius: 2%;
-    transition: background-color 0.2s ease;
+    border-radius: 12px; /* Changed to px for consistent rounding */
+    transition: background-color 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
     overflow: hidden;
-  }
+    position: relative;  /* Better anchoring for inner absolute elements */
+}
 
-  #window .text {
+#window .text {
     text-align: left;
     font-family: var(--sans);
     color: var(--alt-text);
-    padding-top: 5px;
-    padding-left: 40px;
+    padding: 20px 40px;  /* Clean padding all around */
     pointer-events: none;
     user-select: none;
-  }
+    box-sizing: border-box;
+}
 
-  #window .header {
+#window .header {
     background-color: var(--win_header);
-    padding: 5px 30px;
+    padding: 10px 30px;
     display: flex;
     font-family: var(--mono);
     color: var(--text);
     pointer-events: none;
     user-select: none;
     transition: background-color 0.2s ease, color 0.2s ease;
-  }
+}
 
 /* footer settings */
- footer {
+footer {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
+    bottom: 15px; left: 0; right: 0;
     font-size: 12px;
     text-align: center;
     color: var(--alt-text);
@@ -81,37 +85,61 @@
 
 /* blink settings */
 .sharp-blink {
-    animation: sharpEffect 2s steps(3, start) infinite; /* Sharp snap loop */
-  }
+    animation: sharpEffect 2s steps(3, start) infinite;
+}
 
-  @keyframes sharpEffect {
-    to { visibility: hidden; } /* Toggles between visible and hidden */
-  }
+@keyframes sharpEffect {
+    to { visibility: hidden; }
+}
 
 /* button settings */
- .button { 
+.button { 
     border: none;
     background: none;
     cursor: pointer;
-    width: 10px;
-    height: 10px;
-    position: relative;
-    top: -320px; left: -320px;
+    /* Removed rigid negative position coordinates */
+    margin: 10px auto; 
+    display: block; 
 }
 
-  .button-image {
-    transition: color 0.15s ease, scale 0.15s ease-out;
+.button-image {
+    transition: transform 0.15s ease, scale 0.15s ease-out;
     scale: 1;
     content: var(--button-icon);
     width: 70px;
     height: 70px;
     display: block;
-  }
+}
 
- .button-image:hover {
+.button-image:hover {
     scale: 1.1;
- }
+}
 
-  .button-image:active {
+.button-image:active {
     scale: 0.9;
-  }
+}
+
+/* --- MOBILE & BREAKPOINT OPTIMIZATIONS --- */
+
+@media (max-width: 600px) {
+    /* Hide layout mechanics not needed on mobile */
+    #window .header, 
+    .button {
+        display: none; 
+    }
+
+    /* Strip window cosmetics and allow it to shrink naturally */
+    #window {
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+    }
+
+    /* Center text neatly inside the stripped window */
+    #window .text {
+        text-align: center;
+        padding: 20px;
+    }
+}
