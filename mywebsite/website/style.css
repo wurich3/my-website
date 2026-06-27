@@ -1,0 +1,257 @@
+:root {
+  --bg: #e3f5fc;
+  --win-bg: #fdfdfd;
+  --win_header: rgba(0, 1, 30, 0.911);
+  --border: rgb(48, 47, 47);
+  --text: #fdfdfd;
+  --themebtn-bg: rgb(36, 36, 36);
+  --themebtn-text: #ffffff;
+  --themebtn-icon: url('Lightmode.png');
+  --alt-text: #121212;
+  --sans: 'Inter', Arial, sans-serif;
+  --mono: 'Share Tech Mono', monospace;
+}
+
+body.dark {
+  --bg: #17171a;
+  --win-bg: #272727;
+  --win_header: rgb(63, 65, 105);
+  --border: rgb(236, 236, 236);
+  --text: #121212;
+  --themebtn-bg: #ffffff;
+  --themebtn-text: #121212;
+  --themebtn-icon: url('Darkmode.png');
+  --alt-text: #ffffff;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--bg);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Container to handle layout flow */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px; 
+  padding: 0px;  
+  box-sizing: border-box;
+}
+
+/* window settings */
+#window {
+  width: clamp(100px, 100vw - 40px, 800px); 
+  max-height: min(470px, calc(100vh - 40px)); 
+  margin: 0 auto;
+  height: auto; 
+  flex-shrink: 0;    
+  background-color: var(--win-bg);
+  border: 2.5px solid var(--border);
+  box-shadow: 5px 5px 1px var(--border);
+  border-radius: 12px; 
+  transition: background-color 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  display: flex; 
+  flex-direction: column;
+}
+
+#window .text {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+#window .welcome {
+  pointer-events: none;
+  text-align: left;
+  font-family: var(--sans);
+  color: var(--alt-text);
+  padding-left: 24px; padding-right: 24px;
+  font-size: clamp(24px, 2vw + 2vh, 52px); 
+}
+
+#window .info {
+  pointer-events: none;
+  text-align: left;
+  font-family: var(--sans);
+  color: var(--alt-text);
+  margin-top: 10px;
+  padding: 0px 24px;
+  font-size: clamp(20px, 1vw + 1vh, 20px); 
+  line-height: 1.5;
+}
+
+ #window .scroll {
+  border-top: 1px dashed var(--border);
+  box-sizing: border-box;
+  scroll-padding-right: 5px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--win_header) var(--win-bg);
+  transition: scrollbar-color 0.2s ease;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888888;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555555;
+  }
+ }
+
+#window .header {
+  background-color: var(--win_header);
+  padding: 10px 30px;
+  display: flex;
+  font-family: var(--mono);
+  color: var(--text);
+  pointer-events: none;
+  user-select: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* footer settings */
+footer {
+  position: absolute;
+  bottom: 15px; left: 0; right: 0;
+  font-size: 12px;
+  text-align: center;
+  color: var(--alt-text);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* blink settings */
+.sharp-blink {
+  animation: sharpEffect 2s steps(3, start) infinite;
+}
+
+@keyframes sharpEffect {
+  to { visibility: hidden; }
+}
+
+/* button settings */
+.btn { 
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0;
+}
+
+.btn-theme {
+  transition: transform 0.15s ease;
+  content: var(--themebtn-icon);
+  width: clamp(30px, 3vw + 3vh, 50px);  
+  height: clamp(30px, 3vw + 3vh, 50px);
+  display: block;
+  position: absolute; 
+  top: 20px;
+  left: 34px;
+}
+
+.btn-theme:hover, .multbtn-about:hover {
+  transform: scale(1.1);
+}
+
+.btn-theme:active, .multbtn-about:active {
+  transform: scale(0.9);
+}
+
+.multbtn {
+  margin-top: auto; 
+  padding: 24px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  gap: 16px;            
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.multbtn-about {
+  border: none;
+  background: transparent;
+  transition: transform 0.15s ease;
+  cursor: pointer;
+  width: 100px;  
+  height: 100px;
+  min-width: 50px;
+  min-height: 50px;
+  padding: 0;
+  z-index: 10;
+  display: inline-block;
+}
+
+.multbtn-about img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;    
+}
+
+
+/* --- MOBILE SETTTINGS --- */
+@media (max-width: 600px), (max-height: 600px) {
+  html, body {
+    overflow-y: auto; 
+  }
+
+  #window .header {
+    display: none;
+  }
+
+  #window {
+    width: clamp(100px, 100vw - 40px, 800px);
+    height: clamp(200px, 100vh - 40px, 800px); 
+    justify-content: center;
+    align-items: center;    
+  }
+
+  #window .welcome {
+    background-color: var(--win_header);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 0px;
+    margin: 0;
+    color: var(--text);
+    text-align: center;
+  }
+
+  #window .info {
+    margin-top: 15px;
+    text-align: left;
+  }
+
+  footer {
+    bottom: 5px;
+  }
+
+  .btn-theme {
+    top: 20px;
+    left: 34px;
+    margin-bottom: 15px;
+    order: -1;
+  }
+
+  .multbtn {
+    margin-top: 10px; 
+  }
+}
