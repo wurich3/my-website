@@ -1,3 +1,6 @@
+let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+let vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+
 const toggleButton = document.getElementById('theme-toggle');
 
 // 1. Check if user has a saved preference from a previous visit
@@ -18,3 +21,4 @@ toggleButton.addEventListener('click', () => {
     localStorage.setItem('theme', 'light');
   }
 });
+
