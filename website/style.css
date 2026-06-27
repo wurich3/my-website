@@ -119,6 +119,8 @@ html, body {
 
 #window .header {
   background-color: var(--win_header);
+  width: 100%;
+  box-sizing: border-box;
   padding: 10px 30px;
   display: flex;
   font-family: var(--mono);
@@ -127,6 +129,7 @@ html, body {
   user-select: none;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
+
 
 /* footer settings */
 footer {
